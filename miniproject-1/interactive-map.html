@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <!-- <link rel="stylesheet" type="text/css" href="tooltip.css">   -->
+
+    <script type="text/javascript">
+        function showTooltip(evt, text) {
+            let tooltip = document.getElementById("tooltip");
+            tooltip.innerHTML = text;
+            tooltip.style.display = "block";
+            tooltip.style.left = evt.pageX + 10 + 'px';
+            tooltip.style.top = evt.pageY + 10 + 'px';
+        }
+
+        function hideTooltip() {
+            var tooltip = document.getElementById("tooltip");
+            tooltip.style.display = "none";
+        }
+
+        function showPopup() { window.open("popup_rect.html", "a", "width=400, height=300, left=100, top=50"); }
+
+    </script>
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        h1 {
+            background-color: navy;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 32pt;
+            color: white;
+            text-align: center;
+        }
+
+        text {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12pt;
+            color: white;
+            stroke: white;
+            stroke-width: 0;
+            text-anchor: middle;
+        }
+
+        /* overmouse CSS */
+        .tooltip {
+            position: relative;
+            z-index: 999;
+            font-size: 15pt;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: cornsilk;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 5px;
+            opacity: 1;
+        }
+    </style>
+
+
+    <title>Mini Project 1</title>
+
+</head>
+
+<body>
+
+    <h1>QMUL Map</h1>
+
+
+    <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"
+        style="display: block; margin: 0px auto;">
+        <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+        <g class="layer">
+            <title>Layer 1</title>
+
+            <image height="673" id="background" transform="matrix(1 0 0 1 0 0)" width="784" x="-40" y="-160"
+                opacity="0.5" href="QMUL-map.jpg" />
+
+            <g id="map-group">
+                <rect fill="#bfbfbf" height="50" id="mileend-road" stroke="#000000" stroke-width="0" width="779" x="-37"
+                    y="382" />
+                <rect fill="#bfbfbf" height="493" id="bancroft-road" stroke="#000000" stroke-width="0" width="30"
+                    x="288" y="-113" />
+                <rect fill="#7f00ff" height="94" id="itl" stroke="#000000" stroke-width="0" width="59" x="28" y="161" />
+                <rect fill="#cfb997" height="91" id="godward-square" stroke="#000000" stroke-width="0" width="123"
+                    x="92" y="127" />
+                <a style="cursor: pointer;" onclick="showPopup()" ;>
+                    <rect fill="#7f00ff" height="182" id="people-palace" stroke="#000000" stroke-width="0" width="81"
+                        x="504" y="173" onmouseover="showTooltip(evt, 'People Palace');" onmouseout="hideTooltip();" />
+                </a>
+                <g id="map-group">
+                    <rect fill="#7f00ff" height="117" id="engineering-buildings" stroke="#000000" stroke-width="0"
+                        width="108" x="161" y="238"
+                        onmouseover="showTooltip(evt, 'Computer Science and Engineering School');"
+                        onmouseout="hideTooltip();" />
+                    <rect fill="#7f00ff" height="20" id="svg_6" stroke="#000000" stroke-width="0" width="83" x="259"
+                        y="335" onmouseover="showTooltip(evt, 'Computer Science and Engineering School');"
+                        onmouseout="hideTooltip();" />
+                    <rect fill="#7f00ff" height="35" id="svg_9" stroke="#000000" stroke-width="0" width="69" x="435"
+                        y="310" onmouseover="showTooltip(evt, 'Computer Science and Engineering School');"
+                        onmouseout="hideTooltip();" />
+                    <rect fill="#7f00ff" height="179" id="svg_7" stroke="#000000" stroke-width="0" width="94" x="342"
+                        y="176" onmouseover="showTooltip(evt, 'Computer Science and Engineering School');"
+                        onmouseout="hideTooltip();" />
+                </g>
+            </g>
+
+            <g id="text-group">
+                <text id="text" x="323" xml:space="preserve" y="412">Mile End Road</text>
+                <text id="text" transform="rotate(90 303 150.25)" x="303" xml:space="preserve" y="156">Bancroft
+                    Road</text>
+                <text id="text" x="58" xml:space="preserve" y="218">5</text>
+                <text id="text" x="153" xml:space="preserve" y="183">Godward Square</text>
+                <text id="text" x="544" xml:space="preserve" y="278">16</text>
+                <text id="text" x="213" xml:space="preserve" y="307">15</text>
+            </g>
+        </g>
+    </svg>
+
+    <script type="text/javascript">
+
+        function unselected_colour(evt) {
+            let target = evt.target;
+            target.setAttributeNS(null, 'fill', 'grey');
+        }
+
+        function selected_colour(evt) {
+            let target = evt.target;
+            target.setAttributeNS(null, 'fill', '#0705f7');
+        }
+
+        let map_obj = document.getElementById('map-group');
+
+        map_obj.addEventListener('mouseover', selected_colour, false);
+        map_obj.addEventListener('mouseout', unselected_colour, false);
+
+        //Advanced
+
+
+    </script>
+
+
+    <h2>Summary</h2>
+
+    <ul>
+        <p>
+            <li>To make it look more like a map, used the background of image captured the map in the pdf file.<br>On
+                top of that, created rectangles that were sized and positioned, then grouped into 'map-groups'.</li>
+        </p>
+        <p>
+            <li>Using 'function()'' method, which was used in Lab1, let the color was changed when the mouse was placed
+                on each square.<br> After defining element as target, set the value of 'unselected_colour'by adding a
+                new property using the given namespace or name.<br>'selected_color' was changed the value of colour
+                property .</li>
+        </p>
+        <p>
+            <li>'document.getElementById()' method finds an element with an 'id' property that matches a given string
+                and returns an 'element' object that represents it. <br>Using this method, defined 'map-group' as
+                'map_obj' and added 'addEventListener()' to define the function to be called to the event.<br>Therefore,
+                when mouseover the square, the color changes from gray to blue.</li>
+        </p>
+        <p>
+            <li>Using 'tooltip' function, I can popup the info about building. </li>
+        </p>
+
+    </ul>
+
+
+</body>
+
+</html>
